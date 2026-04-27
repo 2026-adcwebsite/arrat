@@ -17,13 +17,20 @@ const navMenu = document.getElementById('navMenu');
 if (menuToggle && navMenu) {
   menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
+    navMenu.classList.toggle('is-open');
+    // Lock body scroll when menu is open
+    if (navMenu.classList.contains('is-open')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   });
 
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       menuToggle.classList.remove('active');
-      navMenu.classList.remove('active');
+      navMenu.classList.remove('is-open');
+      document.body.style.overflow = '';
     });
   });
 }
