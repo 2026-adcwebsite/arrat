@@ -1761,7 +1761,6 @@ a.contact-card-value:hover { color: var(--accent); }
 
   /* Navigation */
   .nav-inner { padding: 0 1.25rem; gap: 0.5rem; }
-  .nav-links { display: none; }
   .nav-toggle { display: flex; order: 3; }
   .nav-cta { 
     padding: 0.55rem 1rem; 
@@ -1771,12 +1770,13 @@ a.contact-card-value:hover { color: var(--accent); }
   .brand-name { font-size: 1.2rem; }
   .brand-mark { width: 32px; height: 32px; font-size: 1.1rem; }
 
-  /* Mobile menu overlay */
-  .nav-links.active {
+  /* Mobile menu - hidden by default, shown when is-open is added */
+  .nav-links {
     display: flex;
     position: fixed;
     top: var(--nav-h);
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
     background: var(--bg);
     flex-direction: column;
@@ -1784,18 +1784,27 @@ a.contact-card-value:hover { color: var(--accent); }
     padding: 2rem 1.5rem;
     z-index: 99;
     overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    margin-left: 0;
   }
-  .nav-links.active li { width: 100%; }
-  .nav-links.active a {
+  .nav-links.is-open {
+    transform: translateX(0);
+  }
+  .nav-links li { width: 100%; }
+  .nav-links a {
     display: block;
-    padding: 1rem 0;
+    padding: 1.1rem 0;
     border-bottom: 1px solid var(--line);
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-family: var(--f-display);
+    color: var(--ink);
   }
-  .nav-links.active a.active::after { display: none; }
-  .nav-links.active a.active { color: var(--accent); }
+  .nav-links a.active {
+    color: var(--accent);
+  }
+  .nav-links a.active::after { display: none; }
 
   /* Hero */
   .hero { 
